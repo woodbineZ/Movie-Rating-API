@@ -1,0 +1,27 @@
+(venv) PS M:\Nauka\Movie_Rating_API> python manage.py shell
+Python 3.10.5 (tags/v3.10.5:f377153, Jun  6 2022, 16:14:13) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from .models import Actors
+Traceback (most recent call last):     
+  File "<console>", line 1, in <module>
+KeyError: "'__name__' not in globals"  
+>>> from apka.models import Actors 
+>>> Actors.objects.all()
+<QuerySet [<Actors: Ralph Fiennes>, <Actors: Juliette Binoche>, <Actors: Willem Dafoe>, <Actors: Keanu Reeves>, <Actors: Carrie-Anne Moss>, <Actors: Laurence Fishburne>, <Actors: Jean Reno>, <Actors: Garry Oldman>, <Actors: Natalie Portman>, <Actors: Russel Crowe>, <Actors: Joaquin Phoenix>, <Actors: Connie Nielsen>, <Actors: John Travolta>, <Actors: Uma Thurman>, <Actors: Samuel L. Jackson>]>
+>>> Actors.objects.create(name='Borys', surname='Szyc')
+<Actors: Borys Szyc>
+>>> Actors.objects.all()
+<QuerySet [<Actors: Ralph Fiennes>, <Actors: Juliette Binoche>, <Actors: Willem Dafoe>, <Actors: Keanu Reeves>, <Actors: Carrie-Anne Moss>, <Actors: Laurence Fishburne>, <Actors: Jean Reno>, <Actors: Garry Oldman>, <Actors: Natalie Portman>, <Actors: Russel Crowe>, <Actors: Joaquin Phoenix>, <Actors: Connie Nielsen>, <Actors: John Travolta>, <Actors: Uma Thurman>, <Actors: Samuel L. Jackson>, <Actors: Borys Szyc>]>
+>>> Actors.objects.filter(name='Borys').update(name='Boryslaw')
+1
+>>> Actors.objects.all()
+<QuerySet [<Actors: Ralph Fiennes>, <Actors: Juliette Binoche>, <Actors: Willem Dafoe>, <Actors: Keanu Reeves>, <Actors: Carrie-Anne Moss>, <Actors: Laurence Fishburne>, <Actors: Jean Reno>, <Actors: Garry Oldman>, <Actors: Natalie Portman>, <Actors: Russel Crowe>, <Actors: Joaquin Phoenix>, <Actors: Connie Nielsen>, <Actors: John Travolta>, <Actors: Uma Thurman>, <Actors: Samuel L. Jackson>, <Actors: Boryslaw 
+Szyc>]>
+>>> from apka.models import Movie 
+>>> Movie.objects.filter(title='The Matrix')
+<QuerySet [<Movie: The Matrix, (1999-08-13)>]>
+>>> Movie.objects.get(title='Pulp Fiction')
+<Movie: Pulp Fiction, (1995-05-19)>
+>>> Movie.objects.all().order_by('rating')     
+<QuerySet [<Movie: Gladiator, (2000-07-14)>, <Movie: Pulp Fiction, (1995-05-19)>, <Movie: Léon, (1995-05-26)>, <Movie: The English Patient, (1997-04-04)>, <Movie: The Matrix, (1999-08-13)>, <Movie: The Matrix, (1999-08-13)>, <Movie: The English Patient, (1997-04-04)>, <Movie: Léon, (1995-05-26)>, <Movie: Pulp Fiction, (1995-05-19)>, <Movie: Gladiator, (2000-07-14)>, <Movie: Gladiator, (2000-07-14)>, <Movie: Pulp Fiction, (1995-05-19)>, <Movie: Léon, (1995-05-26)>, <Movie: The English Patient, (1997-04-04)>, <Movie: The Matrix, (1999-08-13)>, <Movie: The Matrix, (1999-08-13)>, <Movie: The English Patient, (1997-04-04)>, <Movie: Léon, (1995-05-26)>, <Movie: Pulp Fiction, (1995-05-19)>, <Movie: Gladiator, (2000-07-14)>, '...(remaining elements truncated)...']>
